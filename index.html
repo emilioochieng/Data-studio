@@ -42,7 +42,13 @@ details{background:var(--card);border:1px solid var(--line);border-radius:12px;p
 .contact{background:var(--green);color:#fff;border-radius:22px;padding:42px 28px;text-align:center}.contact .sub{margin-inline:auto;color:#d3e6da}.contact .kicker{color:var(--gold2)}
 .contact .btn{background:#fff;color:#174c37}.contact .btn.o{background:none;color:#fff;border-color:rgba(255,255,255,.5)}
 footer{border-top:1px solid var(--line);padding:26px 0;color:var(--mute);font-size:14px}footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
-@media(max-width:820px){.hero,.about{grid-template-columns:1fr}nav ul{display:none}.hero{padding-top:48px}}
+.nav-actions{display:flex;align-items:center;gap:8px}.iconbtn{background:none;border:1.5px solid var(--line);color:var(--ink);width:40px;height:40px;border-radius:10px;cursor:pointer;font-size:17px}#menuBtn{display:none}
+.tools{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fld{display:grid;gap:4px;margin-bottom:10px;font-size:14px;color:var(--mute)}input,textarea{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit}
+.res{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}.res div{background:var(--soft);border-radius:12px;padding:12px}.res b{display:block;font-size:19px}.res span{font-size:12px;color:var(--mute)}
+.contact form{max-width:480px;margin:0 auto;text-align:left}.contact .fld{color:#d3e6da}.contact input,.contact textarea{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.3);color:#fff}.contact .btn{border:0;cursor:pointer;width:100%}
+@media(max-width:820px){.hero,.about,.tools{grid-template-columns:1fr}#menuBtn{display:inline-block}nav ul{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 22px}nav ul.open{display:flex}nav ul a{display:block;padding:12px 0}.hero{padding-top:48px}}
+@media(max-width:520px){.nav-actions .btn{display:none}}
 </style>
 </head>
 <body>
@@ -50,8 +56,8 @@ footer{border-top:1px solid var(--line);padding:26px 0;color:var(--mute);font-si
 <a class="brand" href="#top" aria-label="EO Data Studio home">
 <svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" fill="none" stroke="#2d7a55" stroke-width="2.5"/><path d="M20 3A17 17 0 0 1 37 20" fill="none" stroke="#e0a82e" stroke-width="2.5" stroke-linecap="round"/><path d="M12 28c0-9 5-14 14-15-1 9-5 14-14 15z" fill="#2d7a55"/><path d="M12 28c4-5 8-8 12-10" stroke="#e0a82e" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
 <span>EO Data Studio<small>AGRITECH · DATA · SOFTWARE</small></span></a>
-<ul><li><a href="#services">Services</a></li><li><a href="#solutions">Solutions</a></li><li><a href="#work">Work</a></li><li><a href="#process">Process</a></li><li><a href="#about">About</a></li><li><a href="#faq">FAQ</a></li></ul>
-<a class="btn" href="#contact">Contact me</a></nav></div></header>
+<ul id="menu"><li><a href="#services">Services</a></li><li><a href="#solutions">Solutions</a></li><li><a href="#work">Work</a></li><li><a href="#tools">Tools</a></li><li><a href="#process">Process</a></li><li><a href="#about">About</a></li><li><a href="#faq">FAQ</a></li></ul>
+<div class="nav-actions"><button class="iconbtn" id="themeBtn" type="button">☾</button><a class="btn" href="#contact">Contact me</a><button class="iconbtn" id="menuBtn" type="button" aria-controls="menu" aria-expanded="false" aria-label="Menu">☰</button></div></nav></div></header>
 
 <main id="top"><div class="wrap">
 <div class="hero">
@@ -107,6 +113,16 @@ footer{border-top:1px solid var(--line);padding:26px 0;color:var(--mute);font-si
 <div class="card"><div class="ic">SW</div><h3>Operations web app</h3><p>A simple internal tool that puts orders, stock and field activity in one shared view.</p></div>
 </div></div></section>
 
+<section id="tools"><div class="wrap">
+<div class="kicker">Tools</div><h2>Try it yourself.</h2><p class="sub">A quick farm profit estimator, and the live data dashboard.</p>
+<div class="tools">
+<div class="card"><h3>Farm profit calculator</h3><p style="margin-bottom:14px">Estimate revenue, profit and break-even price for a crop.</p>
+<div class="two"><label class="fld">Farm size (acres)<input id="area" type="number" min="0" value="5"></label><label class="fld">Yield per acre (kg)<input id="yield" type="number" min="0" value="1800"></label>
+<label class="fld">Selling price per kg (KES)<input id="price" type="number" min="0" value="45"></label><label class="fld">Cost per acre (KES)<input id="cost" type="number" min="0" value="38000"></label></div>
+<div class="res" aria-live="polite"><div><span>Revenue</span><b id="rRev">–</b></div><div><span>Total cost</span><b id="rCost">–</b></div><div><span>Profit</span><b id="rProf">–</b></div><div><span>Break-even price / kg</span><b id="rBE">–</b></div></div></div>
+<div class="card"><h3>Live data dashboard</h3><p style="margin-bottom:16px">Upload three CSV files and see them cleaned, merged and charted automatically, built with Python and Streamlit.</p><a class="btn g" href="https://your-app.streamlit.app" target="_blank" rel="noopener">Open dashboard</a><p style="font-size:13px;margin-top:12px">Placeholder link: replace after deploying the Streamlit app.</p></div>
+</div></div></section>
+
 <section id="process"><div class="wrap">
 <div class="kicker">Process</div><h2>From question to working solution.</h2><br>
 <div class="steps">
@@ -134,11 +150,35 @@ footer{border-top:1px solid var(--line);padding:26px 0;color:var(--mute);font-si
 <section id="contact"><div class="wrap"><div class="contact">
 <div class="kicker">Get in touch</div><h2>Have a farm or data problem worth solving?</h2>
 <p class="sub">Tell me what is slowing you down and I will suggest a practical next step.</p>
-<div class="cta" style="justify-content:center"><a class="btn" href="mailto:emilioochieng44@gmail.com">Send an email</a></div>
+<form id="contactForm"><label class="fld">Your name<input id="cName" required></label><label class="fld">Your email<input id="cEmail" type="email" required></label><label class="fld">How can I help?<textarea id="cMsg" rows="4" required></textarea></label><button class="btn" type="submit">Send message</button></form>
 <p style="margin:18px 0 0;font-size:14px;color:#d3e6da">emilioochieng44@gmail.com</p>
 </div></div></section>
 </main>
 
 <footer><div class="wrap"><span>© 2026 EO Data Studio · Emilio Agritech · Nairobi, Kenya</span><span>Build · Engineer · Analyze</span></div></footer>
+<script>
+(function(){
+var root=document.documentElement;
+try{var t=localStorage.getItem('theme');if(t)root.setAttribute('data-theme',t)}catch(e){}
+var tb=document.getElementById('themeBtn');
+function dark(){var a=root.getAttribute('data-theme');return a?a==='dark':matchMedia('(prefers-color-scheme: dark)').matches}
+function sync(){tb.textContent=dark()?'☀':'☾';tb.setAttribute('aria-label',dark()?'Switch to light mode':'Switch to dark mode')}
+tb.addEventListener('click',function(){var n=dark()?'light':'dark';root.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}sync()});sync();
+var mb=document.getElementById('menuBtn'),m=document.getElementById('menu');
+mb.addEventListener('click',function(){mb.setAttribute('aria-expanded',m.classList.toggle('open'))});
+m.addEventListener('click',function(e){if(e.target.tagName==='A'){m.classList.remove('open');mb.setAttribute('aria-expanded','false')}});
+var ids=['area','yield','price','cost'],el={};ids.forEach(function(i){el[i]=document.getElementById(i);el[i].addEventListener('input',calc)});
+function kes(n){return 'KES '+Math.round(n).toLocaleString('en-KE')}
+function calc(){var a=+el.area.value||0,y=+el.yield.value||0,p=+el.price.value||0,c=+el.cost.value||0;
+var rev=a*y*p,cost=a*c,kg=a*y;
+document.getElementById('rRev').textContent=kes(rev);document.getElementById('rCost').textContent=kes(cost);
+var pr=document.getElementById('rProf');pr.textContent=kes(rev-cost);pr.style.color=rev-cost<0?'#c0392b':'';
+document.getElementById('rBE').textContent=kg>0?'KES '+(cost/kg).toFixed(1):'–'}
+calc();
+document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();
+var n=document.getElementById('cName').value,em=document.getElementById('cEmail').value,msg=document.getElementById('cMsg').value;
+location.href='mailto:emilioochieng44@gmail.com?subject='+encodeURIComponent('Website enquiry from '+n)+'&body='+encodeURIComponent(msg+'\n\nFrom: '+n+' ('+em+')')});
+})();
+</script>
 </body>
 </html>

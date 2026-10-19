@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EO Data Studio | Agritech, Data Engineering & Software</title>
+<meta name="description" content="EO Data Studio combines Emilio Agritech with data engineering, analytics and custom software to turn farm and business records into clear decisions.">
+<style>
+:root{--bg:#f5f6ef;--card:#fff;--ink:#18271f;--mute:#56645b;--line:#dfe3d3;--green:#174c37;--green2:#2d7a55;--gold:#b97a12;--gold2:#e0a82e;--on:#fff;--soft:#eaf0e1;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a110d;--card:#111b15;--ink:#eef3ee;--mute:#9fb0a5;--line:#1f2e25;--green:#3f9a6f;--green2:#5fbf8f;--gold:#e0a82e;--gold2:#f4c94e;--on:#0a110d;--soft:#13201a}}
+:root[data-theme="dark"]{--bg:#0a110d;--card:#111b15;--ink:#eef3ee;--mute:#9fb0a5;--line:#1f2e25;--green:#3f9a6f;--green2:#5fbf8f;--gold:#e0a82e;--gold2:#f4c94e;--on:#0a110d;--soft:#13201a}
+*,*::before,*::after{box-sizing:inherit}html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+a{color:inherit}.wrap{max-width:1100px;margin:0 auto;padding:0 22px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--bg);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:14px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;text-decoration:none}.brand small{display:block;font-weight:500;color:var(--mute);font-size:11px;letter-spacing:1px;margin-top:-4px}
+nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;font-size:14px}nav ul a{text-decoration:none;color:var(--mute)}nav ul a:hover{color:var(--green)}
+.btn{display:inline-block;background:var(--green);color:var(--on);padding:12px 22px;border-radius:10px;font-weight:700;text-decoration:none;font-size:15px}
+.btn.g{background:var(--gold);color:#fff}.btn.o{background:none;color:var(--ink);border:1.5px solid var(--line)}
+.hero{padding:84px 0 60px;display:grid;grid-template-columns:1.25fr .9fr;gap:40px;align-items:center}
+.kicker{color:var(--gold);font-weight:700;letter-spacing:3px;font-size:12px;text-transform:uppercase}
+h1{font-size:clamp(34px,5.4vw,56px);line-height:1.08;margin:14px 0 18px}h1 em{font-style:normal;color:var(--green)}
+.lead{color:var(--mute);font-size:18px;max-width:560px}.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.panel{background:var(--green);color:#fff;border-radius:22px;padding:26px}:root[data-theme="dark"] .panel{color:#fff}
+.panel h3{margin:0 0 14px;font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--gold2)}
+.flow{display:grid;gap:10px}.flow div{background:rgba(255,255,255,.1);border-radius:12px;padding:12px 14px;font-size:15px}.flow b{display:block;color:#fff}.flow span{color:#d3e6da;font-size:13px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;padding:6px 0 50px}
+.stats div{border-left:3px solid var(--gold);padding-left:14px}.stats b{display:block;font-size:20px}.stats span{color:var(--mute);font-size:14px}
+section{padding:60px 0;border-top:1px solid var(--line)}h2{font-size:clamp(26px,4vw,38px);margin:8px 0 10px}.sub{color:var(--mute);max-width:640px;margin:0 0 30px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}.card h3{margin:12px 0 6px}.card p{margin:0;color:var(--mute);font-size:15px}
+.ic{width:42px;height:42px;border-radius:12px;background:var(--soft);color:var(--green);display:grid;place-items:center;font-weight:800}
+.track{margin:28px 0 12px;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}.track:first-of-type{margin-top:0}.sol .card{border-left:4px solid var(--gold)}.sol small{color:var(--gold);font-weight:700;letter-spacing:2px}.sol h3{margin:6px 0}.sol p+p{margin-top:8px;color:var(--ink)}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+.steps div{counter-increment:s;border-left:3px solid var(--green2);padding:2px 0 2px 16px}.steps div::before{content:"0" counter(s);color:var(--gold);font-weight:800}
+.steps h3{margin:2px 0 4px}.steps p{margin:0;color:var(--mute);font-size:15px}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:34px}.about p{color:var(--mute);margin:0 0 14px}
+ul.ticks{list-style:none;padding:0;margin:0}ul.ticks li{padding:8px 0 8px 28px;position:relative;border-bottom:1px solid var(--line)}ul.ticks li::before{content:"✓";position:absolute;left:0;color:var(--green2);font-weight:800}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px}summary{cursor:pointer;font-weight:700}details p{color:var(--mute);margin:10px 0 0}
+.contact{background:var(--green);color:#fff;border-radius:22px;padding:42px 28px;text-align:center}.contact .sub{margin-inline:auto;color:#d3e6da}.contact .kicker{color:var(--gold2)}
+.contact .btn{background:#fff;color:#174c37}.contact .btn.o{background:none;color:#fff;border-color:rgba(255,255,255,.5)}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--mute);font-size:14px}footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+@media(max-width:820px){.hero,.about{grid-template-columns:1fr}nav ul{display:none}.hero{padding-top:48px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav>
+<a class="brand" href="#top" aria-label="EO Data Studio home">
+<svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" fill="none" stroke="#2d7a55" stroke-width="2.5"/><path d="M20 3A17 17 0 0 1 37 20" fill="none" stroke="#e0a82e" stroke-width="2.5" stroke-linecap="round"/><path d="M12 28c0-9 5-14 14-15-1 9-5 14-14 15z" fill="#2d7a55"/><path d="M12 28c4-5 8-8 12-10" stroke="#e0a82e" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+<span>EO Data Studio<small>AGRITECH · DATA · SOFTWARE</small></span></a>
+<ul><li><a href="#services">Services</a></li><li><a href="#solutions">Solutions</a></li><li><a href="#work">Work</a></li><li><a href="#process">Process</a></li><li><a href="#about">About</a></li><li><a href="#faq">FAQ</a></li></ul>
+<a class="btn" href="#contact">Contact me</a></nav></div></header>
+
+<main id="top"><div class="wrap">
+<div class="hero">
+<div>
+<div class="kicker">Emilio Agritech × EO Data Studio</div>
+<h1>Better farm decisions, <em>backed by clean data.</em></h1>
+<p class="lead">One studio for agricultural technology, data engineering and analytics. I turn farm and business records into reliable datasets, Power BI dashboards and practical software, so you can see what is working and act on it.</p>
+<div class="cta"><a class="btn" href="#contact">Book a free intro call</a><a class="btn o" href="#services">Explore services</a></div>
+</div>
+<aside class="panel" aria-label="How it works">
+<h3>From field to decision</h3>
+<div class="flow">
+<div><b>Records</b><span>Crops, harvests, expenses, sales</span></div>
+<div><b>Clean &amp; connect</b><span>One organised, trusted dataset</span></div>
+<div><b>Dashboards &amp; reports</b><span>Clear numbers, ready any time</span></div>
+</div></aside>
+</div>
+<div class="stats">
+<div><b>Python · SQL</b><span>Cleaning and pipelines</span></div>
+<div><b>Power BI</b><span>Interactive dashboards</span></div>
+<div><b>Web software</b><span>Custom farm tools</span></div>
+<div><b>Plain language</b><span>No jargon, clear deliverables</span></div>
+</div></div>
+
+<section id="services"><div class="wrap">
+<div class="kicker">Services</div><h2>One studio, two tracks.</h2><p class="sub">Agritech solutions for farms and agribusinesses, plus data and software services for any organisation.</p>
+<h3 class="track">Agritech</h3>
+<div class="grid">
+<div class="card"><div class="ic">FR</div><h3>Farm Records</h3><p>Organise crop, harvest, input and expense records into a simple system you can keep up to date.</p></div>
+<div class="card"><div class="ic">DA</div><h3>Data Analysis</h3><p>Analyse agricultural and business datasets to find yield trends, cost drivers and what to change next season.</p></div>
+<div class="card"><div class="ic">BI</div><h3>Power BI Dashboards</h3><p>Turn records into clear, interactive visual reports with the KPIs that matter to your operation.</p></div>
+</div>
+<h3 class="track">Data &amp; Software Studio</h3>
+<div class="grid">
+<div class="card"><div class="ic">DE</div><h3>Data Engineering</h3><p>Collect, clean and merge spreadsheets and exports into one reliable source, refreshed automatically.</p></div>
+<div class="card"><div class="ic">SW</div><h3>Custom Software</h3><p>Simple web tools for tracking produce, orders, inventory and field activity in one place.</p></div>
+<div class="card"><div class="ic">RP</div><h3>Reports &amp; Insights</h3><p>Written analysis for management, cooperatives, donors or buyers, with recommendations you can act on.</p></div>
+</div></div></section>
+
+<section id="solutions" class="sol"><div class="wrap">
+<div class="kicker">Solutions</div><h2>Sound familiar? Here’s the fix.</h2><p class="sub">Common problems on farms and agribusinesses, and how I solve them.</p>
+<div class="grid">
+<div class="card"><small>01</small><h3>Records scattered everywhere</h3><p>Notebooks, WhatsApp and several Excel files, and nothing matches.</p><p>One organised record system with clean, consistent data.</p></div>
+<div class="card"><small>02</small><h3>Unsure what is profitable</h3><p>You know the harvest, but not the true cost per crop or acre.</p><p>Cost and yield analysis that shows margins by crop and season.</p></div>
+<div class="card"><small>03</small><h3>Reports take days</h3><p>Month-end means hours of copying and checking numbers by hand.</p><p>Dashboards that update themselves, ready whenever you look.</p></div>
+</div></div></section>
+
+<section id="work"><div class="wrap">
+<div class="kicker">Selected work</div><h2>What a project looks like.</h2><p class="sub">Example projects across both tracks. Replace with your real case studies as you complete them.</p>
+<div class="grid">
+<div class="card"><div class="ic">FR</div><h3>Farm records to dashboard</h3><p>Crop, harvest and expense files cleaned, merged and published as a Power BI dashboard with cost per crop.</p></div>
+<div class="card"><div class="ic">DE</div><h3>Automated reporting pipeline</h3><p>Manual month-end spreadsheets replaced by a scheduled Python pipeline and a one-page report.</p></div>
+<div class="card"><div class="ic">SW</div><h3>Operations web app</h3><p>A simple internal tool that puts orders, stock and field activity in one shared view.</p></div>
+</div></div></section>
+
+<section id="process"><div class="wrap">
+<div class="kicker">Process</div><h2>From question to working solution.</h2><br>
+<div class="steps">
+<div><h3>Discover</h3><p>A free call to understand your goals, records and workflow.</p></div>
+<div><h3>Design</h3><p>We agree the scope, tools and what “done” looks like.</p></div>
+<div><h3>Build</h3><p>I clean, connect and build, sharing progress as I go.</p></div>
+<div><h3>Improve</h3><p>Handover, documentation and support as needs change.</p></div>
+</div></div></section>
+
+<section id="about"><div class="wrap about">
+<div><div class="kicker">About</div><h2>Hi, I’m Emilio Ochieng Odongo.</h2>
+<p>I work across software, data engineering and analytics, with a focus on practical technology for agriculture.</p>
+<p>My approach is simple: understand how you really work, build only what adds value, and document it so your team can run it without me.</p></div>
+<div><ul class="ticks"><li>Plain talk and clear deliverables</li><li>Built around your records and tools</li><li>Reproducible, documented work</li><li>Fixed scope and price agreed upfront</li></ul></div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+<div class="kicker">FAQ</div><h2>Common questions.</h2><br>
+<details><summary>Who do you work with?</summary><p>Farmers, farmer groups, agribusinesses and cooperatives, plus any team or organisation that needs better data, reports or simple custom software.</p></details>
+<details><summary>My records are messy. Can you still help?</summary><p>Yes. Most records are. Cleaning and organising them is usually the first step.</p></details>
+<details><summary>Do I need Power BI already?</summary><p>No. I can set up dashboards in Power BI or a free alternative that fits your budget.</p></details>
+<details><summary>How is pricing decided?</summary><p>After a short call, I propose a fixed scope and price before any work begins.</p></details>
+</div></section>
+
+<section id="contact"><div class="wrap"><div class="contact">
+<div class="kicker">Get in touch</div><h2>Have a farm or data problem worth solving?</h2>
+<p class="sub">Tell me what is slowing you down and I will suggest a practical next step.</p>
+<div class="cta" style="justify-content:center"><a class="btn" href="mailto:emilioochieng44@gmail.com">Send an email</a></div>
+<p style="margin:18px 0 0;font-size:14px;color:#d3e6da">emilioochieng44@gmail.com</p>
+</div></div></section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 EO Data Studio · Emilio Agritech · Nairobi, Kenya</span><span>Build · Engineer · Analyze</span></div></footer>
+</body>
+</html>

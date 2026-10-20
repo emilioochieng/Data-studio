@@ -1,6 +1,6 @@
 """Streamlit dashboard: upload three CSVs, clean, merge and explore them."""
+import numpy as np
 import pandas as pd
-import plotly.express as px
 import streamlit as st
 
 from clean_merge import clean, common_keys, demo_data, merge_all
@@ -25,7 +25,7 @@ tables = [clean(t) for t in raw]
 with st.expander("Preview the three cleaned tables"):
     for i, t in enumerate(tables, 1):
         st.write(f"**File {i}**: {t.shape[0]} rows, {t.shape[1]} columns")
-        st.dataframe(t.head(), use_container_width=True)
+        st.dataframe(t.head(), width="stretch")
 
 # ---------- 2. Merge ----------
 keys = common_keys(tables)
@@ -80,24 +80,27 @@ if cat_cols and num_cols:
         v = st.selectbox("Measure", num_cols, index=num_cols.index("profit") if "profit" in num_cols else 0, key="v")
         agg = st.radio("Aggregation", ["sum", "mean"], horizontal=True)
         data = df.groupby(g, as_index=False)[v].agg(agg).sort_values(v, ascending=False)
-        st.plotly_chart(px.bar(data, x=g, y=v, title=f"{agg.title()} of {v} by {g}"), use_container_width=True)
+        st.caption(f"{agg.title()} of {v} by {g}")
+        st.bar_chart(data.set_index(g)[v])
     with c2:
-        st.plotly_chart(px.histogram(df, x=v, nbins=20, title=f"Distribution of {v}"), use_container_width=True)
+        counts, edges = np.histogram(df[v].dropna(), bins=20)
+        st.caption(f"Distribution of {v}")
+        st.bar_chart(pd.DataFrame({"count": counts}, index=[f"{e:,.0f}" for e in edges[:-1]]))
 if len(num_cols) >= 2:
     a, b = st.columns(2)
     x = a.selectbox("X axis", num_cols, key="x")
     y = b.selectbox("Y axis", num_cols, index=1, key="y")
-    st.plotly_chart(px.scatter(df, x=x, y=y, color=cat_cols[0] if cat_cols else None,
-                               title=f"{y} vs {x}"), use_container_width=True)
+    st.caption(f"{y} vs {x}")
+    st.scatter_chart(df, x=x, y=y, color=cat_cols[0] if cat_cols else None)
 if date_cols and num_cols:
     d = date_cols[0]
     month = df[d].dt.to_period("M").dt.to_timestamp()
     trend = df.groupby(month)[num_cols[0]].sum().reset_index()
     trend.columns = [d, num_cols[0]]
-    st.plotly_chart(px.line(trend, x=d, y=num_cols[0], markers=True,
-                            title=f"{num_cols[0]} over time"), use_container_width=True)
+    st.caption(f"{num_cols[0]} over time")
+    st.line_chart(trend, x=d, y=num_cols[0])
 
 # ---------- 6. Table and export ----------
 st.subheader("Merged data")
-st.dataframe(df, use_container_width=True)
+st.dataframe(df, width="stretch")
 st.download_button("Download merged CSV", df.to_csv(index=False).encode(), "merged_data.csv", "text/csv")
